@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import "../pages/detailView.css";
 import Typography from '@mui/joy/Typography';
 import { useNavigate } from "react-router-dom";
-import { getToken } from "../util/data";
+import { getBaseUrl, getToken } from "../util/data";
 function Review(props) {
     let productData = props.productData;
     const [myReview, setMyreview] = useState("");
     const [user, setUser] = useState({});
     const nav = useNavigate();
     useEffect(() => {
-        fetch("http://localhost:5454/api/users/profile", {
+        fetch(getBaseUrl()+"/api/users/profile", {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -73,7 +73,7 @@ function Review(props) {
                                             }
                                             
                                             fetch(
-                                                "http://localhost:5454/api/reviews/create", {
+                                                getBaseUrl()+"/api/reviews/create", {
                                                 method: 'Post',
                                                 headers: {
                                                     'content-type': 'application/json',

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Address from '../components/addAddress';
 import { useNavigate } from 'react-router-dom';
-import { getToken } from "../util/data";
+import { getBaseUrl, getToken } from "../util/data";
 
 const ProfilePage = () => {
     const [user, setUser] = useState({ address: [] });
@@ -9,7 +9,7 @@ const ProfilePage = () => {
     const nav = useNavigate();
     const token = getToken();
     useEffect(() => {
-        fetch("http://localhost:5454/api/users/profile", {
+        fetch(getBaseUrl()+"/api/users/profile", {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',

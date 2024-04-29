@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getToken } from "../util/data";
+import { getBaseUrl, getToken } from "../util/data";
 function CreateProduct() {
     const [imgurl, setImgurl] = useState();
     const [imgurl1, setImgurl1] = useState();
@@ -71,7 +71,7 @@ function CreateProduct() {
 
       
             fetch(
-                "http://localhost:5454/api/admin/products", {
+                getBaseUrl()+"/api/admin/products", {
                 method: 'Post',
                 headers: {
                     'content-type': 'application/json',
@@ -445,7 +445,7 @@ function CreateProduct() {
                         <button className="btn mybtn"
                         onClick={()=>{
                             fetch(
-                                "http://localhost:5454/api/admin/products", {
+                                getBaseUrl()+"/api/admin/products", {
                                 method: 'Post',
                                 headers: {
                                     'content-type': 'application/json',

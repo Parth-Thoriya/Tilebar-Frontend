@@ -2,7 +2,7 @@ import Carousel from "../components/carousel"
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/productcard";
 import { Scrollbar } from 'smooth-scrollbar-react';
-import { getToken } from "../util/data";
+import { getBaseUrl, getToken } from "../util/data";
 import { useNavigate } from "react-router-dom";
 import { getcategoryList, mydata } from "../util/data";
 function Home() {
@@ -10,7 +10,7 @@ function Home() {
   const nav = useNavigate();
   const token = getToken()
   useEffect(() => {
-    fetch("http://localhost:5454/api/products", {
+    fetch(getBaseUrl()+"/api/products", {
       method: 'GET',
       headers: {
         'content-type': 'application/json',

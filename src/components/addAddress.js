@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../pages/detailView.css";
 import Typography from '@mui/joy/Typography';
 import { useNavigate } from "react-router-dom";
-import { getToken } from "../util/data";
+import { getBaseUrl, getToken } from "../util/data";
 function Address(props) {
     const [address, setAddress] = useState({firstName:"",lastName:"", streetAddress:"", city:"", state:"", zipCode:"", landmark:"", user:"", mobile:"" });
     const firstname = props.user.firstName;
@@ -133,7 +133,7 @@ const nav = useNavigate();
                                     onClick={(e)=>{
                                         e.preventDefault()                                        
                                         fetch(
-                                            "http://localhost:5454/api/users/profile", {
+                                            getBaseUrl()+"/api/users/profile", {
                                             method: 'Post',
                                             headers: {
                                                 'content-type': 'application/json',

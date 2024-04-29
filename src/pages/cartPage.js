@@ -4,7 +4,7 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useNavigate } from "react-router-dom";
-import { getCartPrice, getToken, setCartPrice } from "../util/data";
+import { getBaseUrl, getCartPrice, getToken, setCartPrice } from "../util/data";
 import { loadStripe } from "@stripe/stripe-js";
 function CartProdut(props) {
   const [price, setPrice] = useState(0);
@@ -24,7 +24,7 @@ function CartProdut(props) {
             color="neutral"
             size="sm"
             onClick={(e) => {
-              fetch("http://localhost:5454/api/users/profile", {
+              fetch(getBaseUrl()+"/api/users/profile", {
                 method: 'GET',
                 headers: {
                   'content-type': 'application/json',
@@ -38,7 +38,7 @@ function CartProdut(props) {
                 .then(resUser => {
                   
                   fetch(
-                    "http://localhost:5454/api/cart/add", {
+                    getBaseUrl()+"/api/cart/add", {
                     method: 'Put',
                     headers: {
                       'content-type': 'application/json',
@@ -154,7 +154,7 @@ function CartPage() {
   const nav = useNavigate();
   useEffect(
     () => {
-      fetch("http://localhost:5454/api/users/profile", {
+      fetch(getBaseUrl()+"/api/users/profile", {
         method: 'GET',
         headers: {
           'content-type': 'application/json',
@@ -167,7 +167,7 @@ function CartPage() {
         })
         .then(resUser => {
           fetch(
-            "http://localhost:5454/api/cart/", {
+            getBaseUrl()+"/api/cart/", {
             method: 'get',
             headers: {
               'content-type': 'application/json',
@@ -197,7 +197,7 @@ const formateditems = cartItems.map((pt)=>{
 })  
   const makePayment = async () => {
     const stripe = await loadStripe("pk_test_51Oze9HSDXuRenqofhm6EXJp4qeBaiDRquOmMxdlnckmCeRPTUfTkayb6buqI7BMHsaZ57ihQ9ORf0M4GgfjYI2pb0040NV5Swo")
-    fetch("http://localhost:5454/api/payment/stripe", {
+    fetch(getBaseUrl()+"/api/payment/stripe", {
       method: 'Post',
       headers: {
         'content-type': 'application/json',

@@ -5,7 +5,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import "./detailView.css";
 import KeySpecs from "../components/keySpec";
 import { useNavigate, useParams } from "react-router-dom";
-import { getRole, getToken } from "../util/data";
+import { getBaseUrl, getRole, getToken } from "../util/data";
 import Review from "../components/addreview";
 import Reviews from "../components/reviews";
 function DetailView() {
@@ -50,7 +50,7 @@ const [review,setReview] = useState([]);
     const token = getToken()
     const topRef = useRef(null);
     useEffect(() => {
-        fetch("http://localhost:5454/api/products/id/" + _id, {
+        fetch(getBaseUrl()+"/api/products/id/" + _id, {
             method: 'GET',
             headers: {               
                 'authorization': token,
@@ -142,7 +142,7 @@ const [review,setReview] = useState([]);
                     (
                         <div className="mybtn btn d-block mt-3 mb-2" onClick={() => {
                             fetch(
-                                "http://localhost:5454/api/admin/products/" + _id, {
+                                getBaseUrl()+"/api/admin/products/" + _id, {
                                 method: 'Delete',
                                 headers: {
                                     'content-type': 'application/json',

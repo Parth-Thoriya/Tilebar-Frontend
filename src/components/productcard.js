@@ -4,7 +4,7 @@ import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useNavigate } from "react-router-dom";
-import { getToken } from "../util/data";
+import { getBaseUrl, getToken } from "../util/data";
 function ProductCard(props) {
   const nav = useNavigate();
   let productTile = props.productTile;
@@ -19,7 +19,7 @@ function ProductCard(props) {
           color="neutral"
           size="sm"
           onClick={(e) => {
-            fetch("http://localhost:5454/api/users/profile", {
+            fetch(getBaseUrl()+"/api/users/profile", {
               method: 'GET',
               headers: {
                 'content-type': 'application/json',
@@ -31,7 +31,7 @@ function ProductCard(props) {
               })
               .then(resUser => {                
                 fetch(
-                  "http://localhost:5454/api/cart/add", {
+                  getBaseUrl()+"/api/cart/add", {
                   method: 'Put',
                   headers: {
                     'content-type': 'application/json',

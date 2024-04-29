@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { getData, getToken } from '../util/data';
+import { getBaseUrl, getData, getToken } from '../util/data';
 import ProductCard from '../components/productcard';
 import { Dropdown, Form } from 'react-bootstrap';
 function CatogaryPage() {
@@ -10,7 +10,7 @@ function CatogaryPage() {
     const nav = useNavigate();
     const token = getToken();
     useEffect(() => {
-        fetch("http://localhost:5454/api/products", {
+        fetch(getBaseUrl()+"/api/products", {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
