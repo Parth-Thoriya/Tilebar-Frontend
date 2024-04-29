@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getBaseUrl } from "../util/data";
 function SignUp() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
@@ -52,7 +53,7 @@ function SignUp() {
                             <div class="mx-auto mt-3 mb-4">
                                 <button class="btn mybtn"
                                     onClick={() => {
-                                        fetch("http://localhost:5454/auth/signup",
+                                        fetch(getBaseUrl()+"/auth/signup",
                                             {
                                                 headers: {
                                                     'Accept': 'application/json',

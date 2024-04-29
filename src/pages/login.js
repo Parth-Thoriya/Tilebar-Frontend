@@ -1,6 +1,6 @@
 import React, {  useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getRole } from "../util/data";
+import { getBaseUrl, getRole } from "../util/data";
 function LogIn() {
     const [email , setEmail] = useState();
     const [password , setPassword] = useState();
@@ -42,7 +42,7 @@ if(localStorage.getItem('jwt') != null){
                         <div class="mx-auto mt-3 mb-4">
                             <button class="btn mybtn"
                              onClick={()=>{
-                                fetch("http://localhost:5454/auth/login",
+                                fetch(getBaseUrl()+"/auth/login",
                                 {
                                     headers: {
                                       'Accept': 'application/json',

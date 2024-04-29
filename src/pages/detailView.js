@@ -60,7 +60,7 @@ const [review,setReview] = useState([]);
              return res.json()
             })
             .then(res => {                
-                setProductData(res.product)
+                setProductData(res.product)                
                 setReview(res.review)
             });
             if (topRef.current) {
@@ -167,6 +167,7 @@ const [review,setReview] = useState([]);
         <div className="container">
             <div className="row">
                 <div className="col-12">
+                    
                     <Reviews review={review}/>
                 </div>
             </div>

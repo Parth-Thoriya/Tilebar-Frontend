@@ -49,6 +49,10 @@ totalamount = totalamount + amount;
 function getCartPrice(){
 return totalamount;
 }
-export { mydata , getbyid , getToken , getRole ,getcategoryList,getData, setCartPrice,getCartPrice}
+
+function getBaseUrl(){
+  return "https://tilebarbackend.onrender.com";
+}
+export { mydata , getbyid , getToken , getRole ,getcategoryList,getData, setCartPrice,getCartPrice,getBaseUrl}
 
 
