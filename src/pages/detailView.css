@@ -8,8 +8,7 @@
 	border-left: solid 2px rgb(0, 0, 0);
 	border-right: solid 2px rgb(0, 0, 0);
   }
-  .iconbtn{
-	/* color: rgb(101, 132, 162); */
+  .iconbtn{	
   color: black;
   }
   .iconbtn:hover{

@@ -1,20 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../pages/detailView.css";
-// import ProductCard from "./productcard";
-// import { Divider } from "@mui/material";
-// import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import { useNavigate } from "react-router-dom";
 import { getToken } from "../util/data";
-
-// function formatArray(arr) {
-//     let arr1 = arr.map((elt) => {
-//         return " " + elt + " ,"
-//     })
-//     arr1[arr1.length - 1] = " " + arr[arr.length - 1]
-//     return arr1
-// }
-
 function Review(props) {
     let productData = props.productData;
     const [myReview, setMyreview] = useState("");
@@ -28,8 +16,7 @@ function Review(props) {
                 'authorization': getToken(),
             }
         })
-            .then(res => {
-                // console.log("### raw res profile", res)
+            .then(res => {                
                 if (res.status == 500) {
                     nav("/")
                     localStorage.clear()
@@ -37,7 +24,7 @@ function Review(props) {
                 return res.json()
             })
             .then(res => {
-                console.log("### res content profile", res)
+                
                 setUser(res)
             })
     }, [])
@@ -71,21 +58,20 @@ function Review(props) {
                                 <div class="col-12">
                                     <label for="inputAddress2" class="form-label">Write your review </label>
                                     <input type="text" class="form-control" id="inputAddress2" placeholder="value for money "
-                                        value={myReview} onChange={(e) => {
-                                            console.log("$#$#",productData._id)
+                                        value={myReview} onChange={(e) => {                                           
                                             setMyreview(e.target.value)
                                         }} />
                                 </div>
                                 <div class="col-12">
                                     <button class="btn mybtn"
                                         onClick={(e) => {
-                                            // e.preventDefault()
+                                            
                                             const finalReview = {
                                                 user: user._id
                                                 , productId: productData._id
                                                 , review: myReview
                                             }
-                                            console.log("finalreview", finalReview)
+                                            
                                             fetch(
                                                 "http://localhost:5454/api/reviews/create", {
                                                 method: 'Post',
@@ -98,17 +84,12 @@ function Review(props) {
                                             ).then(res => {
                                                 return res.json()
                                             }).then(
-                                                res => {
-                                                    console.log("### reviews ##", res)
-                                                    
-                                                }
+                                                res => {}
                                             )
                                         }}
                                     >Add</button>
                                 </div>
                             </form>
-
-
                         </div>
                     </div>
 

@@ -1,22 +1,15 @@
 import React, {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getRole } from "../util/data";
-
-
 function LogIn() {
-
     const [email , setEmail] = useState();
     const [password , setPassword] = useState();
     const nav = useNavigate()
    let statusCode = 0;
-
-
     return (<>
     <div style={{height:"100vh",backgroundColor:"grey"}} onLoad={()=>{
-if(localStorage.getItem('jwt') != null){
-    console.log("### ### ###",localStorage.getItem('jwt'));
+if(localStorage.getItem('jwt') != null){    
     nav('/home');
-
 }
     }}>
         <div className="container my-auto mx-auto">
@@ -73,8 +66,7 @@ if(localStorage.getItem('jwt') != null){
                                         }
                                         else{
                                             localStorage.setItem("role",2)
-                                        }
-                                        console.log("############ role",res.role,getRole())
+                                        }                                        
                                         nav('/home')                                        
                                     }
                                     else if(statusCode == 401){                                        
@@ -91,13 +83,7 @@ if(localStorage.getItem('jwt') != null){
                         </div>
 
                         
-                        <div class="card-footer">
-                            {/* <p>
-                                By continuing, you agree to Tilebar's
-                                <a class="footer-link">terms</a>
-                                and acknowledge you've read our
-                                <a  class="footer-link">privacy policy</a>
-                            </p> */}
+                        <div class="card-footer">                            
                             <p>New to Tilebar?create an account</p>
                             <button className="btn mybtn" 
                              onClick={()=>{

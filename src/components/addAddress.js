@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../pages/detailView.css";
-// import ProductCard from "./productcard";
-// import { Divider } from "@mui/material";
-// import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import { useNavigate } from "react-router-dom";
 import { getToken } from "../util/data";
-
-
 function Address(props) {
     const [address, setAddress] = useState({firstName:"",lastName:"", streetAddress:"", city:"", state:"", zipCode:"", landmark:"", user:"", mobile:"" });
     const firstname = props.user.firstName;
@@ -136,8 +131,7 @@ const nav = useNavigate();
                                 <div class="col-12">
                                     <button  class="btn btn-primary"
                                     onClick={(e)=>{
-                                        e.preventDefault()
-                                        // console.log("## address profile add address ",address)
+                                        e.preventDefault()                                        
                                         fetch(
                                             "http://localhost:5454/api/users/profile", {
                                             method: 'Post',
@@ -150,10 +144,7 @@ const nav = useNavigate();
                                         ).then(res => {
                                             return res.json()
                                         }).then(
-                                            res => {
-                                                console.log("###   res adding address", res)
-                                                
-                                            }
+                                            res => {}
                                         )
                                     }}
                                     >Add</button>
@@ -170,45 +161,4 @@ const nav = useNavigate();
 
     </>);
 }
-
 export default Address
-
-
-
-// firstName: {
-//     type: String,
-//     required: true,
-// },
-// lastName: {
-//     type: String,
-//     required: true,
-// },
-// streetAddress: {
-//     type: String,
-//     required: true,
-// },
-// city: {
-//     type: String,
-//     required: true,
-// },
-// state: {
-//     type: String,
-//     required: true,
-// },
-// zipCode: {
-//     type: String,
-//     required: true,
-// },
-// landmark:{
-//     type:String,
-// },
-// user: {
-//     type: mongoose.Schema.Types.ObjectId,
-//     ref: "users"
-// },
-// mobile: {
-//     type: String,
-//     required: true
-// }
-
-

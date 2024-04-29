@@ -1,5 +1,4 @@
 import React from 'react'
-
 function Aboutus() {
     return (<>
         <div className="m-5 p-5 shadow  rounded-pill ">

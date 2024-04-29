@@ -2,11 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { getData, getToken } from '../util/data';
 import ProductCard from '../components/productcard';
-
-
-import { Dropdown, Form } from 'react-bootstrap'; // Import Dropdown and Form components from react-bootstrap
-
-
+import { Dropdown, Form } from 'react-bootstrap';
 function CatogaryPage() {
     const [data, setData] = useState([]);
     const [disData,setDisdata] = useState([]);
@@ -21,24 +17,20 @@ function CatogaryPage() {
                 'authorization': token,
             }
         })
-            .then(res => {
-                // console.log("### raw res cat page", res)
+            .then(res => {                
                 if (res.status == 500) {
                     nav("/")
                     localStorage.clear()
                 }
                 return res.json()
             })
-            .then(res => {
-                // console.log("### res content catpage",res.content)
+            .then(res => {                
                 let filterData = res.content.filter((temp) => {
                     if (temp.category == param.cat) {
                         return true;
                     }
                     return false;
-                });
-                console.log("##### filter data catpage", filterData)
-
+                });                
                 setData(filterData)
                 setDisdata(filterData)
             })
@@ -48,9 +40,6 @@ function CatogaryPage() {
     let finalData = data.map((pt) => {
         return <ProductCard productTile={pt} />
     });
-
-    console.log("##### final data catpage", finalData)
-
     const arrlook = ['subway', 'encaustic', 'zellige', 'decorative', 'concrete look ', 'wood look', 'shapes & patterns', 'mosaic'];
     const arrfinish = ["Polished", "Matte", "Glossy", "Textured", "Satin", "Lappato", "Structured", "Rustic", "Embossed", "Polished Glazed", "Crystalline", "Sculpted", "High Relief"];
     const arrcolors = ["White", "Gray", "Beige & Cream", "Black+White", "Black", "Multicolor", "Blue", "Purple", "Brown", "Green", "Pink", "Gold", "Red", "Metallic"];
@@ -107,8 +96,6 @@ function CatogaryPage() {
             items: arrprice.map(pr => `${pr}`)
         }
     ];
-
-    
     const [selectedItems, setSelectedItems] = useState({
         size: "", weight: "", thickness: "", yesno: "", location: "", colors: "", finish: "", look: "", price: ""
     });
@@ -116,11 +103,7 @@ function CatogaryPage() {
     const handleCheckboxToggle = (category, item) => {
         const cat = category.id;
         let updatedItems;
-
-        // if (Array.isArray(selectedItems[cat])) {
-            
-            if (selectedItems[cat].includes(item)) {
-                
+            if (selectedItems[cat].includes(item)) {                
                 updatedItems = {
                     ...selectedItems,
                     [cat]: selectedItems[cat].replace(","+item, "")
@@ -131,90 +114,26 @@ function CatogaryPage() {
                     [cat]: item
                 };
                
-            }
-            //}
+            }            
          else {
             
             updatedItems = {
                 ...selectedItems,
-                [cat]:item
-                // [cat]: selectedItems[cat]+","+item
+                [cat]:item                
             };
         }
 
-        setSelectedItems(updatedItems);
-        console.log("### cat page items", selectedItems);
+        setSelectedItems(updatedItems);        
     };
-
-// @####
-// function funFilterData(product, criteria) {
-    
-//         // Filtering based on keySpecs
-//         for (const key in criteria) {
-            
-//                  if (key === "yesno") {
-//                     if (criteria[key] !="" && criteria[key].includes(product.detail.available)) {
-//                         return false;
-//                     }
-//                 }
-//                 if(key === "size"){
-//                     if (criteria[key] !="" && product.detail.size.includes(criteria[key])) {
-//                         return false;
-//                     }
-//                 }
-//                 if(key === "weight"){
-//                     if (criteria[key] !="" && criteria[key].includes(product.detail.weight)) {
-//                         return false;
-//                     }
-//                 }
-//                 if(key === "thickness"){
-//                     if (criteria[key] !="" && criteria[key].includes(product.detail.thickness)) {
-//                         return false;
-//                     }
-//                 }
-//                 if(key === "location"){
-//                     if (criteria[key] !="" && product.detail.location.includes(criteria[key])) {
-//                         return false;
-//                     }
-//                 }
-//                 if(key === "itemColor"){
-//                     if (criteria[key] !="" && criteria[key].includes(product.keySpecs.itemColor)) {
-//                         return false;
-//                     }
-//                 }
-//                 if(key === "finish"){
-//                     if (criteria[key] !="" && criteria[key].includes(product.keySpecs.tileFinish)) {
-//                         return false;
-//                     }
-//                 }
-//                 if(key === "look" && ([key] in product.keySpecs)){
-//                     if (criteria[key] !="" && criteria[key].includes(product.keySpecs.look)) {
-//                         return false;
-//                     }
-//                 }
-//                 if(key === "price"){
-//                     if (criteria[key] !="" && criteria[key].includes(product.pricePerSqFt.toString())) {
-//                         return false;
-//                     }
-//                 }
-                
-            
-//         }
-//         return true;
-    
-// }
 function funFilterData(product, criteria) {
     
-    for (const key in criteria) {
-        // If the product does not satisfy the criteria for the current key, return false
+    for (const key in criteria) {        
         if (!criteriaSatisfiedForKey(product, key, criteria[key])) {
             return false;
         }
     }
-    return true; // If all criteria are satisfied, return true
+    return true; 
 }
-
-// Function to check if the criteria for a specific key is satisfied by the product
 function criteriaSatisfiedForKey(product, key, criteriaValue) {
     switch (key) {
         case "yesno":
@@ -236,25 +155,13 @@ function criteriaSatisfiedForKey(product, key, criteriaValue) {
         case "price":
             return criteriaValue === "" || criteriaValue.includes(product.pricePerSqFt.toString());
         default:
-            return true; // Return true for unknown keys
+            return true; 
     }
 }
-
-
-
-//@#####
-
-
     useEffect(()=>{
-        let filterData = data.filter((temp) => {
-            console.log("@#@###@ ",funFilterData(temp,selectedItems))
+        let filterData = data.filter((temp) => {            
            return funFilterData(temp,selectedItems);
         });
-        console.log(" @@@@@@@ my filters data catpage", filterData)
-        console.log(" @@@@@@@ seleted items data catpage", selectedItems)
-        
-        
-        
         setDisdata(filterData);
     },[selectedItems]);
     finalData = disData.map((pt) => {
@@ -301,10 +208,8 @@ function criteriaSatisfiedForKey(product, key, criteriaValue) {
                 </div>
                 <div className='col'><div className='row'>{finalData}</div></div>
             </div>
-
         </div>
     )
 }
-
 export default CatogaryPage
 

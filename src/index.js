@@ -13,12 +13,9 @@ import Dashboard from './pages/adminPages/dashboard';
 import Aboutus from './pages/aboutus';
 import ProfilePage from './pages/profilePage';
 import CartPage from './pages/cartPage';
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
-
 root.render(
   <>
-
     <BrowserRouter>
       <Routes>
         if(localStorage.getItem("jwt") === null){
@@ -39,8 +36,7 @@ root.render(
             <Route path='/home/cart' element={<CartPage/>}/>
             <Route path='/home/profile' element={<ProfilePage/>}/>
             <Route path='/home/catogary/:cat' element={<CatogaryPage/>}/>
-            <Route path='/home/detailView/:_id' element={<DetailView />} />
-            <Route path='/home/key' element={<CartPage/>} />
+            <Route path='/home/detailView/:_id' element={<DetailView />} />            
           </Route>
         }
       </Routes>

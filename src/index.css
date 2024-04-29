@@ -11,8 +11,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-
 .mybtn{
 	color: rgb(0, 0, 0);
 	font-style: italic;
@@ -22,22 +20,17 @@ code {
 	border-top: solid 2px rgb(0, 0, 0);
 	border-left: solid 2px rgb(0, 0, 0);
 	border-right: solid 2px rgb(0, 0, 0 );
-
-
-  
 }
-
-  .mybtn:hover{
+.mybtn:hover{
 	color: red;
-  }
-
-  .iconbtn{
+}
+.iconbtn{
     /* color: rgb(101, 132, 162); */
     color: black;
-    }
-    .iconbtn:hover{
+}
+.iconbtn:hover{
     color: red;	
-    }
+}
 
 
 

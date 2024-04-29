@@ -5,50 +5,7 @@ import IconButton from '@mui/joy/IconButton';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { getRole, getToken } from '../util/data';
 import Footer from './footer';
-
-
-// const dropdown = (section) => {
-
-
-//     let formatedLi = section.map((sec) => {
-//         return (
-//             <>
-//                 <li ><a className="dropdown-item" href="#">{sec.name}</a></li>
-//                 <li><hr className="dropdown-divider" /></li>
-//                 {sec.items.map((temp) => {
-
-//                     return <li ><a className="dropdown-item" href="#">{temp}</a></li>
-
-
-//                 })}
-
-//             </>
-//         )
-//     })
-//     let finalLi = formatedLi.map((data) => {
-//         return <div>{data}</div>
-//     })
-//     return <>{finalLi}</>
-
-// }
-
 const dropdowntable = (section) => {
-    // let tables = section.map((sec) => {
-    //     return <>
-    //         <td className='align-top'>
-
-    //             <tr>{sec.name}
-    //             <tr className='table-group-divider'></tr>
-    //             {sec.items.map((temp) => {
-
-    //                 return <a className="dropdown-item" href="#">{temp}</a>
-
-
-    //             })}</tr>
-    //         </td>
-    //     </>
-    // })
-
     let tables = section.map((sec) => {
         return <>
             <td>
@@ -56,15 +13,11 @@ const dropdowntable = (section) => {
 
                     <thead className='align-middle'>
                         {sec.name}
-
                     </thead>
                     <tbody className='table-group-divider'>
 
                         {sec.items.map((temp) => {
-
                             return <a className="dropdown-item" href="#">{temp}</a>
-
-
                         })}
                     </tbody>
                 </table>
@@ -79,8 +32,6 @@ const dropdowntable = (section) => {
 
 
 export default function Navbar() {
-
-
     const nav = useNavigate();
     const navitems = () => {
         let categories = [
@@ -265,36 +216,13 @@ export default function Navbar() {
     
     
                     <ul className="dropdown-menu">
-    
-                        {/* {dropdown(cat.sections)} */}
-                        {dropdowntable(cat.sections)}
-                        {/* <li ><a className="dropdown-item" href="#">bathroom</a></li> */}
+                        {dropdowntable(cat.sections)}                        
                     </ul>
                 </li>
             );
         });
-        // return(
-        //     <li  className="nav-item dropdown me-3">
-    
-        //                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-        //                     aria-expanded="false">
-        //                     Tiles
-        //                 </a>
-        //                 {/* style={{width: 1000}} */}
-    
-        //                 <ul className="dropdown-menu">
-        //                     <li ><a className="dropdown-item" href="#">bathroom</a></li>
-        //                 </ul>
-    
-    
-    
-        //             </li>
-        // );
         return <>{fromatedCategories}</>;
     }
-
-
-
     function UserRole() {
         let role = getRole();
         if (role == 1) {
@@ -363,14 +291,7 @@ export default function Navbar() {
                                             nav('/home/aboutus')
                                         }}
                                     >About Us</span>
-                                </li>
-                                {/* <li className="nav-item">
-                                    <span className="nav-link"
-                                        onClick={() => {
-                                            nav('/dealers')
-                                        }}
-                                    >Dealer's Corner</span>
-                                </li> */}
+                                </li>                                
                                 {UserRole()}
                                 <button className="mybtn btn"
                                     onClick={() => {
@@ -411,58 +332,17 @@ export default function Navbar() {
                             color="neutral"
                             size="sm"
                             onClick={(e) => {
-                                nav('/home/cart')
-                                // fetch("http://localhost:5454/api/users/profile", {
-                                //   method: 'GET',
-                                //   headers: {
-                                //     'content-type': 'application/json',
-                                //     'authorization': getToken(),
-                                //   }
-                                // })
-                                //   .then(res => {
-                                //     // console.log("### raw res profile", res)
-                                //     // if (res.status == 500) {
-                                //     //     nav("/")
-                                //     //     localStorage.clear()
-                                //     // }
-                                //     return res.json()
-                                //   })
-                                //   .then(resUser => {
-                                //     fetch(
-                                //         "http://localhost:5454/api/cart/", {
-                                //         method: 'get',
-                                //         headers: {
-                                //           'content-type': 'application/json',
-                                //           'authorization': getToken(),
-                                //         },                                        
-                                //       }
-                                //       ).then(res => {
-                                //           console.log("#### cart get raw ",res)
-                                //         return res.json()
-                                //       }).then(
-                                //         res => {
-                                //           console.log("### cart get ##", res)
-                        
-                                //         }
-                                //       )
-                                //   })
-                    
+                                nav('/home/cart')                               
                               }}
                             >
                             <ShoppingCartCheckoutIcon className='me-1 iconbtn' />
                         </IconButton>
                     </span>
                 </div>
-
-
             </nav>
             <Outlet />
             <Footer/>
-
         </>
-
     );
-
-
 }
 

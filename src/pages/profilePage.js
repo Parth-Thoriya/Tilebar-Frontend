@@ -4,14 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { getToken } from "../util/data";
 
 const ProfilePage = () => {
-
-    // Sample order data
-    // const orders = [
-    //     { id: 1, date: '2024-03-25', total: 50.00 },
-    //     { id: 2, date: '2024-03-24', total: 75.00 },
-    //     // Add more sample orders as needed
-    // ];
-
     const [user, setUser] = useState({ address: [] });
     const [orders, setOrder] = useState();
     const nav = useNavigate();
@@ -24,18 +16,15 @@ const ProfilePage = () => {
                 'authorization': token,
             }
         })
-            .then(res => {
-                // console.log("### raw res profile", res)
+            .then(res => {                
                 if (res.status == 500) {
                     nav("/")
                     localStorage.clear()
                 }
                 return res.json()
             })
-            .then(res => {
-                console.log("### res content profile", res)
-                setUser(res)
-                
+            .then(res => {                
+                setUser(res)                
             })
     }, [])
 

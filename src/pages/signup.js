@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-
 function SignUp() {
-
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [firstName, setFirstName] = useState();
     const [lastName, setLastName] = useState();
     const nav = useNavigate()
     let statusCode = 0;
-
     if (localStorage.getItem('jwt') != null) {
         nav('/home')
     }
@@ -70,12 +66,9 @@ function SignUp() {
                                                     "lastName": lastName,
                                                 })
                                             }).then(res => {
-                                                statusCode = res.status
-                                                console.log("##### res", res)
+                                                statusCode = res.status                                                
                                                 return res.json()
-                                            }).then(res => {
-                                                console.log("#### status", statusCode)
-                                                console.log("##### res json", res)
+                                            }).then(res => {                                                
                                                 if (statusCode == 200) {
                                                     localStorage.setItem("role", res.role)
                                                     localStorage.setItem("jwt", res.jwt)
@@ -93,8 +86,6 @@ function SignUp() {
                                     Sign Up
                                 </button>
                             </div>
-
-
                             <div class="card-footer">
                             </div>
                         </div>

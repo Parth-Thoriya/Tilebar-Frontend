@@ -1,9 +1,5 @@
-import { Button, Drawer } from '@mui/material';
 import React from 'react'
 import { Outlet, useNavigate } from 'react-router-dom';
-import { Scrollbar } from 'smooth-scrollbar-react';
-
-
 const Sidebar = () => {
   const nav = useNavigate();
   return (
@@ -41,9 +37,6 @@ const Sidebar = () => {
     </div>
   );
 }
-
-
-
 function Dashboard() {
   return (
     <>
@@ -52,18 +45,12 @@ function Dashboard() {
           <div className="col-md-3 ">
             <Sidebar />
           </div>
-
           <div className="col-md-9 ">
-
             <Outlet />
-
           </div>
         </div>
       </div>
-
     </>
   )
 }
-
-
 export default Dashboard;

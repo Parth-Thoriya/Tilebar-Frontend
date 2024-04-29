@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import { getToken } from "../util/data";
-// import { useNavigate } from "react-router-dom";
-
-
 function CreateProduct() {
     const [imgurl, setImgurl] = useState();
     const [imgurl1, setImgurl1] = useState();
@@ -60,26 +57,18 @@ function CreateProduct() {
     })
 
     function submitProduct(e) {
-        // console.log("####### url",imgurl,":::::",imgurl1,":::::",imgurl2,":::::",imgurl3)
-        // console.log("####### details",details)
-        // console.log("####### key specs",keySpec)
-
         if (typeof (product.keySpecs.availableColors) == String) {
             let arraycolor = keySpec.availableColors.split(",")
-
             setKeySpec({ ...keySpec, availableColors: arraycolor })
         }
         const myfun =()=>{
             if(!Array.isArray(details.location)){
-
                 setDetails({...details,location:details.location.split(","),SpFtPerBox:Number.parseFloat(details.SpFtPerBox),thickness:Number.parseFloat(details.thickness),weight:Number.parseFloat(details.weight)})
             }
         }
         myfun()
         setProduct({ ...product, imageUrls: [imgurl, imgurl1, imgurl2, imgurl3], detail: details, keySpecs: keySpec })
 
-        console.log("#### new product", product)
-        console.log("#####", product)
       
             fetch(
                 "http://localhost:5454/api/admin/products", {
@@ -94,13 +83,13 @@ function CreateProduct() {
                 return res.json()
             }).then(
                 res => {
-                    console.log("### create product res", res)
+                    
                     
                 }
             )
         
     }
-    console.log("#### outside new product", product)
+    
     return (<>
         <div className="container mt-5">
             <form class="row g-3 needs-validation" novalidate>
@@ -514,12 +503,7 @@ function CreateProduct() {
                             }
                             ).then(res => {
                                 return res.json()
-                            }).then(
-                                res => {
-                                    console.log("### dummy create product res", res)
-                                    
-                                }
-                            )
+                            }).then(res => {})
                         }}
                         >
                             dummy data 
