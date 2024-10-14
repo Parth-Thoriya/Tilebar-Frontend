@@ -6,6 +6,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useNavigate } from "react-router-dom";
 import { getBaseUrl, getCartPrice, getToken, setCartPrice } from "../util/data";
 import { loadStripe } from "@stripe/stripe-js";
+
 function CartProdut(props) {
   const [price, setPrice] = useState(0);
   const [boxes, setBoxes] = useState(0);
@@ -196,7 +197,7 @@ const formateditems = cartItems.map((pt)=>{
   return <CartProdut product={pt.product} pt={pt} />
 })  
   const makePayment = async () => {
-    const stripe = await loadStripe("pk_test_51Oze9HSDXuRenqofhm6EXJp4qeBaiDRquOmMxdlnckmCeRPTUfTkayb6buqI7BMHsaZ57ihQ9ORf0M4GgfjYI2pb0040NV5Swo")
+    const stripe = await loadStripe(process.env.pk)
     fetch(getBaseUrl()+"/api/payment/stripe", {
       method: 'Post',
       headers: {

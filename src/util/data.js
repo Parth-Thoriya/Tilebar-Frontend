@@ -51,7 +51,7 @@ return totalamount;
 }
 
 function getBaseUrl(){
-  return "https://tilebarbackend.onrender.com";
+  return process.env.baseURL;
 }
 export { mydata , getbyid , getToken , getRole ,getcategoryList,getData, setCartPrice,getCartPrice,getBaseUrl}
 
